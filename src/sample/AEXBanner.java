@@ -1,4 +1,4 @@
-package AEXBanner;
+package sample;
 
 public class AEXBanner extends Application {
 
