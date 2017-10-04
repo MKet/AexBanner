@@ -1,4 +1,4 @@
-package AexBanner.Domain;
+package Domain;
 
 public interface IFonds {
 

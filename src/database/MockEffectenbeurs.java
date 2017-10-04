@@ -1,6 +1,6 @@
-package AexBanner.database;
+package database;
 
-import AexBanner.Domain.IFonds;
+import Domain.IFonds;
 
 import java.util.List;
 
