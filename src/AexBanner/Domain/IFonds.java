@@ -1,8 +1,8 @@
-package sample;
+package AexBanner.Domain;
 
 public interface IFonds {
 
-	string getNaam();
+	String getNaam();
 
 	double getKoers();
 

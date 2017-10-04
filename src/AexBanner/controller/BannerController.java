@@ -1,4 +1,6 @@
-package sample;
+package AexBanner.controller;
+
+import AexBanner.Domain.AEXBanner;
 
 public class BannerController {
 
