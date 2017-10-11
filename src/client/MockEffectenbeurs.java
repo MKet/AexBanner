@@ -1,7 +1,8 @@
-package database;
+package client;
 
-import Domain.Fonds;
-import Domain.IFonds;
+import shared.Fonds;
+import shared.IEffectenbeurs;
+import shared.IFonds;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +11,8 @@ import java.util.Random;
 public class MockEffectenbeurs implements IEffectenbeurs {
 
     private List<IFonds> koersen = new ArrayList();
-    int rangeMin = 0;
-    int rangeMax = 15;
+    private int rangeMin = 0;
+    private int rangeMax = 15;
 
     public MockEffectenbeurs(){
 

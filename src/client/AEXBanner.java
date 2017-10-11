@@ -1,6 +1,5 @@
-package Domain;
+package client;
 
-import controller.BannerController;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -14,7 +13,7 @@ import javafx.stage.Stage;
 public class AEXBanner extends Application {
 
 	public static final int WIDTH = 1000;
-	public static final int HEIGHT = 100;
+	public static final int HEIGHT = 140;
 	public static final int NANO_TICKS = 20000000;
 	// FRAME_RATE = 1000000000/NANO_TICKS = 50;
 
@@ -29,7 +28,7 @@ public class AEXBanner extends Application {
 
 		controller = new BannerController(this);
 
-		Font font = new Font("Arial", HEIGHT);
+		Font font = new Font("Courier", HEIGHT);
 		text = new Text();
 		text.setFont(font);
 		text.setFill(Color.BLACK);
@@ -58,7 +57,6 @@ public class AEXBanner extends Application {
                     if (textPosition < -textLength)
                         textPosition = WIDTH;
 
-					// TODO
 					text.relocate(textPosition,0);
 					prevUpdate = now;
 				}

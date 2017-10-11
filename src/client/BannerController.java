@@ -1,25 +1,22 @@
-package controller;
+package client;
 
-import Domain.AEXBanner;
-import Domain.IFonds;
-import database.IEffectenbeurs;
-import database.MockEffectenbeurs;
+import shared.IEffectenbeurs;
+import shared.IFonds;
 
-import java.util.ArrayList;
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class BannerController {
 
-
 	private AEXBanner banner;
-	private IEffectenbeurs mockBeurs;
+	private IEffectenbeurs beurs;
 	private Timer timer;
 
 	public BannerController(AEXBanner banner) {
-		// TODO - implement BannerController.BannerController
-		mockBeurs = new MockEffectenbeurs();
+		RMIClient client = new RMIClient();
+		beurs = client.getbeurs();
 		this.banner = banner;
 		timer = new Timer();
 		Timer timer = new Timer();
@@ -33,12 +30,16 @@ public class BannerController {
 	}
 
 	public void stop() {
-		// TODO - implement BannerController.stop
 		timer.cancel();
 	}
 
 	public void update(){
-		List<IFonds> koersen = mockBeurs.getKoersen();
+		List<IFonds> koersen = null;
+		try {
+			koersen = beurs.getKoersen();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		String sKoers = "";
 		for(IFonds f : koersen){
 			sKoers += f.toString();

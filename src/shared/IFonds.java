@@ -1,4 +1,4 @@
-package Domain;
+package shared;
 
 public interface IFonds {
 

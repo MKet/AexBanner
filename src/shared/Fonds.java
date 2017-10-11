@@ -1,6 +1,8 @@
-package Domain;
+package shared;
 
-public class Fonds implements IFonds {
+import java.io.Serializable;
+
+public class Fonds implements IFonds, Serializable {
 
     private String koersNaam;
     private double koers;
