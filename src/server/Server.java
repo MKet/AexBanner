@@ -52,7 +52,7 @@ public class Server {
         // Bind student administration using registry
         if (registry != null) {
             try {
-               beurs  = (IEffectenbeurs) registry.lookup(bindingName);
+                beurs  = (IEffectenbeurs) registry.lookup(bindingName);
             } catch (RemoteException ex) {
                 System.out.println("Client: Cannot bind student administration");
                 System.out.println("Client: RemoteException: " + ex.getMessage());

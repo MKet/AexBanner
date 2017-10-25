@@ -1,9 +1,8 @@
 package server;
 
-import shared.Fonds;
-import shared.IEffectenbeurs;
-import shared.IFonds;
+import shared.*;
 
+import javax.swing.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -12,11 +11,16 @@ import java.util.Random;
 
 public class RMIEffectenbeurs extends UnicastRemoteObject implements IEffectenbeurs {
 
-    private List<IFonds> koersen = new ArrayList();
+    private Timer t;
+    private List<IListener> listeners = new ArrayList<>();
+    private List<IFonds> koersen = new ArrayList<>();
     private int rangeMin = 0;
     private int rangeMax = 15;
 
     public RMIEffectenbeurs() throws RemoteException {
+        t = new Timer(2000, (e) -> Update());
+        t.start();
+
         //Create a bunch of funds
         Fonds Aex = new Fonds("AEX");
         Fonds Nasd = new Fonds("NASD");
@@ -28,9 +32,7 @@ public class RMIEffectenbeurs extends UnicastRemoteObject implements IEffectenbe
         koersen.add(EurUsd);
     }
 
-    @Override
-    public List<IFonds> getKoersen() {
-
+    private void Update() {
         Random random = new Random();
         for (IFonds fonds : koersen) {
             Fonds f = (Fonds)fonds;
@@ -38,6 +40,34 @@ public class RMIEffectenbeurs extends UnicastRemoteObject implements IEffectenbe
             f.setKoers(randomValue);
         }
 
+        StringBuilder sKoers = new StringBuilder();
+        for(IFonds f : koersen){
+            sKoers.append(f.toString());
+        }
+        String koersen = sKoers.toString();
+
+        for (IListener listener: listeners) {
+            try {
+                listener.setKoersen(koersen);
+            } catch (RemoteException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+
+
+    @Override
+    public List<IFonds> getKoersen() {
         return koersen;
+    }
+
+    @Override
+    public void addListener(IListener listener) throws RemoteException {
+        listeners.add(listener);
+    }
+
+    @Override
+    public void removeListener(IListener listener) throws RemoteException {
+        listeners.remove(listener);
     }
 }

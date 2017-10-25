@@ -1,9 +1,8 @@
 package client;
 
-import shared.Fonds;
-import shared.IEffectenbeurs;
-import shared.IFonds;
+import shared.*;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -40,5 +39,13 @@ public class MockEffectenbeurs implements IEffectenbeurs {
         return koersen;
     }
 
+    @Override
+    public void addListener(IListener listener) throws RemoteException {
 
+    }
+
+    @Override
+    public void removeListener(IListener listener) throws RemoteException {
+
+    }
 }
