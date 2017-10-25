@@ -41,7 +41,7 @@ public class Server {
             registry = null;
         }
 
-        // Bind student administration using registry
+        // Bind AEX Banner using registry
         try {
             registry.rebind(bindingName, beurs);
         } catch (RemoteException ex) {
@@ -49,7 +49,7 @@ public class Server {
             System.out.println("Server: RemoteException: " + ex.getMessage());
         }
 
-        // Bind student administration using registry
+        // Bind AEX Banner using registry
         if (registry != null) {
             try {
                beurs  = (IEffectenbeurs) registry.lookup(bindingName);
