@@ -39,12 +39,14 @@ public class Server {
         // Create registry at port number
         try {
             registry = LocateRegistry.createRegistry(portNumber);
+            System.out.println("Server: Registry created on IP address :" + registry.toString());
             System.out.println("Server: Registry created on port number " + portNumber);
         } catch (RemoteException ex) {
             System.out.println("Server: Cannot create registry");
             System.out.println("Server: RemoteException: " + ex.getMessage());
             registry = null;
         }
+        
 
         // Bind AEX Banner using registry
         try {
