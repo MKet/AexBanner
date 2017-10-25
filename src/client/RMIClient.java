@@ -11,7 +11,7 @@ public class RMIClient {
 
     private static final String bindingName = "Effectenbeurs";
 
-    // References to registry and student administration
+    // References to registry and AEXBanner
     private Registry registry = null;
     private IEffectenbeurs beurs = null;
 
@@ -20,7 +20,7 @@ public class RMIClient {
 
         // Locate registry at IP address and port number
         try {
-            registry = LocateRegistry.getRegistry(1500);
+            registry = LocateRegistry.getRegistry("169.254.182.192", 1500);
         } catch (RemoteException ex) {
             System.out.println("Client: Cannot locate registry");
             System.out.println("Client: RemoteException: " + ex.getMessage());
